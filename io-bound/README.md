@@ -1,8 +1,10 @@
-# Projeto de Software
+# io-bound
 
-Aplicação base para atividades da disciplina e projeto
+Api CRUD
 
-### 🔗 Endereços Úteis
+# Execução
 
-- [Swagger](http://localhost:8080/swagger-ui/index.html)
-- [H2 Console](http://localhost:8080/h2-console)
+```bash
+docker compose up -d
+./gradlew bootRun
+```
