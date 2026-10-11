@@ -17,8 +17,8 @@ def rss_mb():
     return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024
 
 
-@app.get("/saude")
-def saude():
+@app.get("/health")
+def health():
     return jsonify(status="ok")
 
 
