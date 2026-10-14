@@ -12,7 +12,7 @@ export const options = {
 };
 
 export default function () {
-  const res = http.get("http://172.22.176.1:8000/calcular?iteracoes=500000");
+  const res = http.get("http://localhost:8080/cafes");
 
   check(res, {
     "status HTTP 200": (r) => r.status === 200,
