@@ -48,23 +48,5 @@ def alocar():
     )
 
 
-@app.post("/reter")
-def reter():
-    """
-    Acumula memória que NÃO é liberada entre requisições.
-    Útil para observar pressão crescente de memória e possível swap.
-    """
-    mb = min(int(request.args.get("mb", 64)), MAX_MB)
-    RETIDO.append(bytearray(mb * 1024 * 1024))
-    total = sum(len(b) for b in RETIDO) / (1024 * 1024)
-    return jsonify(blocos=len(RETIDO), total_retido_mb=round(total, 2))
-
-
-@app.post("/liberar")
-def liberar():
-    RETIDO.clear()
-    return jsonify(status="liberado")
-
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, threaded=True)

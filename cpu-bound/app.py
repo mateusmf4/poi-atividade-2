@@ -9,7 +9,7 @@ def health():
 
 @app.get("/calcular")
 def calcular():
-    iteracoes = int(request.args.get("iteracoes", 1_000_000))
+    iteracoes = int(request.args.get("iteracoes", 50000))
 
     inicio = time.perf_counter()
 
