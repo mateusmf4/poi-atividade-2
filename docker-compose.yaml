@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres-loucos-por-cafe
+    environment:
+      POSTGRES_DB: loucos-por-cafe
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d loucos-por-cafe"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  io-bound:
+    image: fluiz22/io-bound-api
+    ports:
+      - "8801:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  cpu-bound:
+    image: fluiz22/cpu-bound-api
+    ports:
+      - "8802:8000"
+
+  memory-bound:
+    image: mateusmf4/memory-bound-api
+    ports:
+      - "8803:8000"
+
+volumes:
+  postgres_data:
